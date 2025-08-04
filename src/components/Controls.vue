@@ -39,7 +39,7 @@
     <div class="dialog-buttons">
       <button 
         @click="showRaceResults" 
-        :disabled="raceResults.length === 0"
+        :disabled="!raceResults || raceResults.length === 0"
         class="btn btn-info"
       >
         📊 Race Results
@@ -132,8 +132,8 @@ export default {
     const canStartRace = computed(() => store.getters['game/canStartRace'])
     const isRacing = computed(() => store.getters['race/isRacing'])
     const currentRound = computed(() => store.getters['race/currentRound'])
-    const horses = computed(() => store.getters['horses/allHorses'])
-    const raceResults = computed(() => store.getters['race/raceResults'])
+    const horses = computed(() => store.getters['horses/allHorses'] || [])
+    const raceResults = computed(() => store.getters['race/raceResults'] || [])
     
     const gameStatus = computed(() => {
       if (isRacing.value) return '🏁 Racing'

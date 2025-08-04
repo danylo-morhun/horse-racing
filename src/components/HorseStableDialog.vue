@@ -70,7 +70,7 @@
         <div class="summary-stats">
           <div class="stat-card">
             <h4>Total Horses</h4>
-            <span class="stat-value">{{ horses.length }}</span>
+            <span class="stat-value">{{ horses ? horses.length : 0 }}</span>
           </div>
           <div class="stat-card">
             <h4>Average Condition</h4>
@@ -120,13 +120,13 @@ export default {
   emits: ['close'],
   setup(props) {
     const averageCondition = computed(() => {
-      if (props.horses.length === 0) return 0
+      if (!props.horses || props.horses.length === 0) return 0
       const total = props.horses.reduce((sum, horse) => sum + horse.condition, 0)
       return total / props.horses.length
     })
 
     const bestCondition = computed(() => {
-      if (props.horses.length === 0) return 0
+      if (!props.horses || props.horses.length === 0) return 0
       return Math.max(...props.horses.map(horse => horse.condition))
     })
 

@@ -2,7 +2,7 @@
   <div class="results">
     <h2>🏆 Race Results</h2>
     
-    <div v-if="raceResults.length === 0" class="no-results">
+    <div v-if="!raceResults || raceResults.length === 0" class="no-results">
       <div class="no-results-icon">📊</div>
       <h3>No Results Yet</h3>
       <p>Race results will appear here after each round</p>

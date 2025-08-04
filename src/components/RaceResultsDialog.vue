@@ -57,7 +57,7 @@
         </div>
       </div>
       
-      <div v-if="raceResults.length === 0" class="no-results">
+      <div v-if="!raceResults || raceResults.length === 0" class="no-results">
         <p>No race results available yet.</p>
       </div>
     </div>
