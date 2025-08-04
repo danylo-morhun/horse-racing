@@ -194,6 +194,8 @@ export default {
       canStartRace,
       isRacing,
       currentRound,
+      horses,
+      raceResults,
       gameStatus,
       generateSchedule,
       startRace,

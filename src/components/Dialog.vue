@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <div v-if="isOpen" class="dialog-overlay" @click="closeOnOverlay">
+    <div v-if="isOpen" class="dialog-overlay" @click="handleOverlayClick">
       <div class="dialog-content" @click.stop>
         <div class="dialog-header">
           <h3>{{ title }}</h3>
@@ -36,7 +36,7 @@ export default {
   },
   emits: ['close'],
   methods: {
-    closeOnOverlay() {
+    handleOverlayClick() {
       if (this.closeOnOverlay) {
         this.$emit('close')
       }
