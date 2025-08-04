@@ -76,32 +76,62 @@ const actions = {
   async simulateRace({ commit }, race) {
     return new Promise((resolve) => {
       const horses = [...race.horses]
-      const raceDuration = 5000 // 5 seconds
       const updateInterval = 100 // Update every 100ms
-      const updates = raceDuration / updateInterval
+      const maxDuration = 30000 // Maximum 30 seconds to prevent infinite loops
       
-      let currentUpdate = 0
+      let raceTime = 0
+      let finishedHorses = []
       
       const interval = setInterval(() => {
+        raceTime += updateInterval
+        
         // Update horse positions based on condition and randomness
         horses.forEach(horse => {
-          const speed = (horse.condition / 100) * (0.5 + Math.random() * 0.5)
-          horse.position += speed * (race.distance / updates)
+          if (!horse.finished) {
+            // Calculate speed based on condition (1-100) and randomness
+            const baseSpeed = horse.condition / 100 // 0.01 to 1.0
+            const randomFactor = 0.5 + Math.random() * 0.5 // 0.5 to 1.0
+            const speed = baseSpeed * randomFactor * 20 // Scale up for reasonable movement
+            
+            horse.position += speed
+            
+            // Check if horse has finished
+            if (horse.position >= race.distance) {
+              horse.position = race.distance
+              horse.finished = true
+              horse.finishTime = raceTime
+              finishedHorses.push(horse)
+            }
+          }
         })
         
-        currentUpdate++
-        
-        if (currentUpdate >= updates) {
+        // Check if all horses have finished or max time reached
+        if (finishedHorses.length === horses.length || raceTime >= maxDuration) {
           clearInterval(interval)
           
-          // Sort horses by final position
-          const sortedHorses = horses.sort((a, b) => b.position - a.position)
+          // Mark remaining horses as finished at current position
+          horses.forEach(horse => {
+            if (!horse.finished) {
+              horse.finished = true
+              horse.finishTime = raceTime
+              finishedHorses.push(horse)
+            }
+          })
+          
+          // Sort horses by finish time (faster first), then by position
+          const sortedHorses = horses.sort((a, b) => {
+            if (a.finished && b.finished) {
+              return a.finishTime - b.finishTime
+            }
+            return b.position - a.position
+          })
           
           resolve({
             round: race.round,
             distance: race.distance,
             horses: sortedHorses,
-            winner: sortedHorses[0]
+            winner: sortedHorses[0],
+            raceTime: raceTime
           })
         }
       }, updateInterval)

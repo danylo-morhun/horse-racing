@@ -45,7 +45,7 @@
             ></div>
             <div class="horse-details">
               <span class="horse-name">{{ horse.name }}</span>
-              <span class="final-position">{{ Math.round(horse.position) }}m</span>
+              <span class="final-position">{{ Math.round(horse.position) }}m ({{ horse.finishTime ? Math.round(horse.finishTime / 1000) + 's' : 'DNF' }})</span>
             </div>
             <div class="medal">
               {{ index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉' }}
@@ -67,7 +67,7 @@
                 :style="{ backgroundColor: horse.color }"
               ></div>
               <span class="horse-name">{{ horse.name }}</span>
-              <span class="final-position">{{ Math.round(horse.position) }}m</span>
+              <span class="final-position">{{ Math.round(horse.position) }}m ({{ horse.finishTime ? Math.round(horse.finishTime / 1000) + 's' : 'DNF' }})</span>
             </div>
           </div>
         </div>
