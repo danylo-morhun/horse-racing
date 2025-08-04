@@ -93,8 +93,7 @@ export default {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   max-height: 600px;
-  overflow-y: auto;
-  overflow-x: visible;
+  overflow: visible;
   position: relative;
 }
 
