@@ -189,7 +189,7 @@ const getters = {
   isRacing: state => state.isRacing,
   raceResults: state => state.raceResults,
   currentRace: state => state.raceSchedule[state.currentRound - 1] || null,
-  isGameComplete: state => state.currentRound > 6 && !state.isRacing
+  isGameComplete: state => state.raceResults.length === 6 && !state.isRacing
 }
 
 export default {

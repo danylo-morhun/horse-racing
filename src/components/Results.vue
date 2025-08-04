@@ -2,14 +2,14 @@
   <div class="results">
     <div class="results-header">
       <h2>🏆 Race Results</h2>
-              <button 
+              <div 
           v-if="raceResults.length > 0"
           @click="openRaceResultsDialog" 
-          class="action-btn"
+          class="icon-button"
+          title="View Complete Race Results"
         >
-          <span class="btn-icon">📊</span>
-          <span class="btn-text">Complete Results</span>
-        </button>
+          📊
+        </div>
     </div>
     
     <div v-if="!raceResults || raceResults.length === 0" class="no-results">
@@ -41,46 +41,21 @@
           </div>
         </div>
         
-        <div class="podium">
-          <div 
-            v-for="(horse, index) in result.horses.slice(0, 3)" 
-            :key="horse.id"
-            class="podium-place"
-            :class="`place-${index + 1}`"
-          >
-            <div class="place-number">{{ index + 1 }}</div>
+        <div class="winner-only">
+          <div class="winner-card">
+            <div class="winner-medal">🥇</div>
             <div 
               class="horse-color"
-              :style="{ backgroundColor: horse.color }"
+              :style="{ backgroundColor: result.winner.color }"
             ></div>
-            <div class="horse-details">
-              <span class="horse-name">{{ horse.name }}</span>
-              <span class="final-position">{{ Math.round(horse.position) }}m ({{ horse.finishTime ? Math.round(horse.finishTime / 1000) + 's' : 'DNF' }})</span>
-            </div>
-            <div class="medal">
-              {{ index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉' }}
+            <div class="winner-details">
+              <span class="winner-name">{{ result.winner.name }}</span>
+              <span class="winner-time">{{ Math.round(result.winner.finishTime / 1000) }}s</span>
             </div>
           </div>
         </div>
         
-        <div class="full-results">
-          <h4>Full Results</h4>
-          <div class="results-list">
-            <div 
-              v-for="(horse, index) in result.horses" 
-              :key="horse.id"
-              class="result-item"
-            >
-              <span class="position">{{ index + 1 }}</span>
-              <div 
-                class="horse-color"
-                :style="{ backgroundColor: horse.color }"
-              ></div>
-              <span class="horse-name">{{ horse.name }}</span>
-              <span class="final-position">{{ Math.round(horse.position) }}m ({{ horse.finishTime ? Math.round(horse.finishTime / 1000) + 's' : 'DNF' }})</span>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
     
@@ -143,33 +118,47 @@ export default {
   margin-bottom: 1rem;
 }
 
-.action-btn {
+.icon-button {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.4rem 0.8rem;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 500;
+  border-radius: 50%;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  position: relative;
 }
 
-.action-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+.icon-button:hover {
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
 }
 
-.btn-icon {
-  font-size: 0.9rem;
+.icon-button::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
-.btn-text {
-  font-weight: 500;
+.icon-button:hover::after {
+  opacity: 1;
 }
 
 .results h2 {
@@ -276,114 +265,49 @@ export default {
   font-size: 1.5rem;
 }
 
-.podium {
+.winner-only {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  justify-content: center;
+  margin: 1rem 0;
 }
 
-.podium-place {
-  flex: 1;
+.winner-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  padding: 1.5rem 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
+  min-width: 250px;
+}
+
+.winner-details {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 0.5rem;
-  border-radius: 8px;
-  position: relative;
+  gap: 0.25rem;
 }
 
-.place-1 {
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-  transform: scale(1.1);
-  z-index: 3;
-}
-
-.place-2 {
-  background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
-  transform: scale(1.05);
-  z-index: 2;
-}
-
-.place-3 {
-  background: linear-gradient(135deg, #cd7f32 0%, #daa520 100%);
-  z-index: 1;
-}
-
-.place-number {
-  font-size: 1.5rem;
-  font-weight: bold;
+.winner-name {
+  font-weight: 700;
   color: #333;
+  font-size: 1.2rem;
+}
+
+.winner-time {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
 }
 
 .horse-color {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   border: 2px solid white;
 }
 
-.horse-details {
-  text-align: center;
-}
 
-.horse-name {
-  display: block;
-  font-weight: 600;
-  color: #333;
-  font-size: 0.8rem;
-  margin-bottom: 0.25rem;
-}
-
-.final-position {
-  font-size: 0.7rem;
-  color: #666;
-}
-
-.medal {
-  font-size: 1.2rem;
-}
-
-.full-results {
-  border-top: 2px solid #f8f9fa;
-  padding-top: 1rem;
-}
-
-.full-results h4 {
-  margin: 0 0 1rem 0;
-  color: #333;
-  font-size: 1rem;
-}
-
-.results-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.result-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem;
-  background: #f8f9fa;
-  border-radius: 6px;
-}
-
-.position {
-  font-weight: bold;
-  color: #333;
-  min-width: 20px;
-}
-
-.horse-name {
-  flex: 1;
-  font-weight: 600;
-  color: #333;
-  font-size: 0.9rem;
-}
 
 
 

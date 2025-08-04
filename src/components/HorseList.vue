@@ -5,10 +5,9 @@
         <h2>🐎 Horse Stable</h2>
         <p class="subtitle">All 20 horses with their conditions</p>
       </div>
-      <button @click="openStableDialog" class="action-btn">
-        <span class="btn-icon">📋</span>
-        <span class="btn-text">Complete Data</span>
-      </button>
+      <div class="icon-button" @click="openStableDialog" title="View Complete Horse Data">
+        📋
+      </div>
     </div>
     
     <div class="horses-grid">
@@ -121,33 +120,47 @@ export default {
   margin-bottom: 1.5rem;
 }
 
-.action-btn {
+.icon-button {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.4rem 0.8rem;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 500;
+  border-radius: 50%;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  position: relative;
 }
 
-.action-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+.icon-button:hover {
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
 }
 
-.btn-icon {
-  font-size: 0.9rem;
+.icon-button::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
-.btn-text {
-  font-weight: 500;
+.icon-button:hover::after {
+  opacity: 1;
 }
 
 .horse-list h2 {

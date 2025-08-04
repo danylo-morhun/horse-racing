@@ -19,14 +19,7 @@
         Start Race
       </button>
       
-      <button 
-        @click="skipCurrentRound" 
-        :disabled="!isRacing"
-        class="btn btn-warning"
-        data-testid="skip-round-btn"
-      >
-        Skip Round
-      </button>
+
       
       <button 
         @click="resetGame" 
@@ -120,9 +113,7 @@ export default {
       store.dispatch('game/resetGame')
     }
     
-    const skipCurrentRound = () => {
-      store.dispatch('race/skipCurrentRound')
-    }
+
     
     // Dialog states
     const showGameRulesDialog = ref(false)
@@ -150,7 +141,7 @@ export default {
       generateSchedule,
       startRace,
       resetGame,
-      skipCurrentRound,
+
       showGameRules,
       showGameRulesDialog,
       closeGameRules
