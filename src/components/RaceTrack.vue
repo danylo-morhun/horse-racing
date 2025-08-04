@@ -79,11 +79,7 @@
       <button @click="resetGame" class="reset-btn">Play Again</button>
     </div>
     
-    <div v-else class="waiting-state">
-      <div class="waiting-icon">⏳</div>
-      <h3>Preparing Next Race...</h3>
-      <p>Get ready for Round {{ currentRound }}</p>
-    </div>
+
   </div>
 </template>
 
@@ -167,8 +163,7 @@ export default {
 }
 
 .empty-state,
-.ready-state,
-.waiting-state {
+.ready-state {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -179,23 +174,20 @@ export default {
 }
 
 .empty-icon,
-.ready-icon,
-.waiting-icon {
+.ready-icon {
   font-size: 4rem;
   margin-bottom: 1rem;
 }
 
 .empty-state h3,
-.ready-state h3,
-.waiting-state h3 {
+.ready-state h3 {
   margin: 0 0 0.5rem 0;
   color: #333;
   font-size: 1.5rem;
 }
 
 .empty-state p,
-.ready-state p,
-.waiting-state p {
+.ready-state p {
   margin: 0;
   font-size: 1rem;
 }
