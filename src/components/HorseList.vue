@@ -11,7 +11,8 @@
       </div>
     </div>
     
-    <div class="horses-grid">
+    <div class="horses-grid-container">
+      <div class="horses-grid">
       <div 
         v-for="horse in horses" 
         :key="horse.id"
@@ -113,6 +114,7 @@ export default {
 .horse-list {
   height: 100%;
   overflow: visible;
+  position: relative;
 }
 
 .horse-list-header {
@@ -202,7 +204,15 @@ export default {
   display: grid;
   gap: 1rem;
   max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+  position: relative;
+}
+
+.horses-grid-container {
   overflow: visible;
+  position: relative;
 }
 
 .horse-card {
