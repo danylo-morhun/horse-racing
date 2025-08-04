@@ -13,6 +13,7 @@
         v-for="result in raceResults" 
         :key="result.round"
         class="result-card"
+        data-testid="result-card"
       >
         <div class="result-header">
           <h3>Round {{ result.round }}</h3>
@@ -73,7 +74,7 @@
       </div>
     </div>
     
-    <div v-if="isGameComplete" class="game-complete">
+    <div v-if="isGameComplete" class="game-complete" data-testid="race-complete">
       <div class="complete-icon">🎉</div>
       <h3>Game Complete!</h3>
       <p>All 6 rounds have been completed</p>

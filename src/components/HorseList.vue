@@ -9,6 +9,7 @@
         :key="horse.id"
         class="horse-card"
         :class="{ racing: horse.isRacing }"
+        data-testid="horse-card"
       >
         <div class="horse-header">
           <div 

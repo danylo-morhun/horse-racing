@@ -20,7 +20,7 @@
       <p>Click "Start Race" to begin the competition</p>
     </div>
     
-    <div v-else-if="isRacing && currentRace" class="active-race">
+    <div v-else-if="isRacing && currentRace" class="active-race" data-testid="race-in-progress">
       <div class="track-container">
         <div class="finish-line"></div>
         

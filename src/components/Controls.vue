@@ -5,6 +5,7 @@
         @click="generateSchedule" 
         :disabled="!canGenerateSchedule"
         class="btn btn-primary"
+        data-testid="generate-schedule-btn"
       >
         Generate Race Schedule
       </button>
@@ -13,6 +14,7 @@
         @click="startRace" 
         :disabled="!canStartRace"
         class="btn btn-success"
+        data-testid="start-race-btn"
       >
         Start Race
       </button>
