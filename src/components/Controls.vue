@@ -20,10 +20,43 @@
       </button>
       
       <button 
+        @click="skipCurrentRound" 
+        :disabled="!isRacing"
+        class="btn btn-warning"
+        data-testid="skip-round-btn"
+      >
+        Skip Round
+      </button>
+      
+      <button 
         @click="resetGame" 
         class="btn btn-secondary"
       >
         Reset Game
+      </button>
+    </div>
+    
+    <div class="dialog-buttons">
+      <button 
+        @click="showRaceResults" 
+        :disabled="raceResults.length === 0"
+        class="btn btn-info"
+      >
+        📊 Race Results
+      </button>
+      
+      <button 
+        @click="showHorseStable" 
+        class="btn btn-info"
+      >
+        🐎 Horse Stable
+      </button>
+      
+      <button 
+        @click="showGameRules" 
+        class="btn btn-info"
+      >
+        📖 Game Rules
       </button>
     </div>
     
@@ -54,15 +87,42 @@
         <span class="status-value active">{{ currentRound }}/6</span>
       </div>
     </div>
+    
+    <!-- Dialogs -->
+    <RaceResultsDialog 
+      :is-open="showRaceResultsDialog"
+      :race-results="raceResults"
+      @close="closeRaceResults"
+    />
+    
+    <HorseStableDialog 
+      :is-open="showHorseStableDialog"
+      :horses="horses"
+      :race-results="raceResults"
+      @close="closeHorseStable"
+    />
+    
+    <GameRulesDialog 
+      :is-open="showGameRulesDialog"
+      @close="closeGameRules"
+    />
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
+import RaceResultsDialog from './RaceResultsDialog.vue'
+import HorseStableDialog from './HorseStableDialog.vue'
+import GameRulesDialog from './GameRulesDialog.vue'
 
 export default {
   name: 'Controls',
+  components: {
+    RaceResultsDialog,
+    HorseStableDialog,
+    GameRulesDialog
+  },
   setup() {
     const store = useStore()
     
@@ -72,6 +132,8 @@ export default {
     const canStartRace = computed(() => store.getters['game/canStartRace'])
     const isRacing = computed(() => store.getters['race/isRacing'])
     const currentRound = computed(() => store.getters['race/currentRound'])
+    const horses = computed(() => store.getters['horses/allHorses'])
+    const raceResults = computed(() => store.getters['race/raceResults'])
     
     const gameStatus = computed(() => {
       if (isRacing.value) return '🏁 Racing'
@@ -92,6 +154,39 @@ export default {
       store.dispatch('game/resetGame')
     }
     
+    const skipCurrentRound = () => {
+      store.dispatch('race/skipCurrentRound')
+    }
+    
+    // Dialog states
+    const showRaceResultsDialog = ref(false)
+    const showHorseStableDialog = ref(false)
+    const showGameRulesDialog = ref(false)
+    
+    const showRaceResults = () => {
+      showRaceResultsDialog.value = true
+    }
+    
+    const showHorseStable = () => {
+      showHorseStableDialog.value = true
+    }
+    
+    const showGameRules = () => {
+      showGameRulesDialog.value = true
+    }
+    
+    const closeRaceResults = () => {
+      showRaceResultsDialog.value = false
+    }
+    
+    const closeHorseStable = () => {
+      showHorseStableDialog.value = false
+    }
+    
+    const closeGameRules = () => {
+      showGameRulesDialog.value = false
+    }
+    
     return {
       horsesGenerated,
       scheduleGenerated,
@@ -102,7 +197,17 @@ export default {
       gameStatus,
       generateSchedule,
       startRace,
-      resetGame
+      resetGame,
+      skipCurrentRound,
+      showRaceResults,
+      showHorseStable,
+      showGameRules,
+      showRaceResultsDialog,
+      showHorseStableDialog,
+      showGameRulesDialog,
+      closeRaceResults,
+      closeHorseStable,
+      closeGameRules
     }
   }
 }
@@ -168,6 +273,33 @@ export default {
 .btn-secondary:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+  color: white;
+}
+
+.btn-warning:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+}
+
+.btn-info {
+  background: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%);
+  color: white;
+}
+
+.btn-info:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(23, 162, 184, 0.4);
+}
+
+.dialog-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .game-status {

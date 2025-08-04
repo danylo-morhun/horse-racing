@@ -140,6 +140,25 @@ const actions = {
 
   resetRace({ commit }) {
     commit('RESET_RACE_STATE')
+  },
+
+  skipCurrentRound({ commit, state, dispatch }) {
+    if (state.currentRound > 0 && state.currentRound <= 6) {
+      const currentRace = state.raceSchedule[state.currentRound - 1]
+      if (currentRace) {
+        // Simulate the race quickly with realistic results
+        dispatch('simulateRace', currentRace).then(result => {
+          commit('ADD_RACE_RESULT', result)
+          
+          // Move to next round immediately
+          if (state.currentRound < 6) {
+            commit('SET_CURRENT_ROUND', state.currentRound + 1)
+          } else {
+            commit('SET_RACING_STATE', false)
+          }
+        })
+      }
+    }
   }
 }
 
