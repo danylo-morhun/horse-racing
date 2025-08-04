@@ -25,10 +25,17 @@ An interactive horse racing game built with Vue.js 3 (Composition API) and Vuex 
 - **Visual Race Track**: Animated race track with finish line and lane numbers
 
 ### Results & Statistics
-- **Round-by-round Results**: Complete results for each race
-- **Winner Highlights**: Special highlighting for race winners
-- **Podium Display**: Top 3 finishers with medals
-- **Full Results List**: Complete rankings for all participants
+- **Simplified Winner Display**: Clean, focused winner cards for each round
+- **Complete Results Dialog**: Detailed table view with all race statistics
+- **Performance Tracking**: Win counts, race participation, and average times
+- **Game Completion**: Special completion screen with results access
+
+### Enhanced User Experience
+- **Skip Functionality**: Skip current round or entire game to end
+- **Professional UI**: Modern design with gradients, shadows, and smooth animations
+- **Icon Tooltips**: Compact icon buttons with hover tooltips for better UX
+- **Dialog System**: Modal dialogs for detailed information views
+- **Responsive Layout**: Optimized for all screen sizes
 
 ## 🏗️ Architecture
 
@@ -36,17 +43,23 @@ An interactive horse racing game built with Vue.js 3 (Composition API) and Vuex 
 ```
 src/
 ├── components/
-│   ├── Controls.vue      # Game control buttons and status
-│   ├── HorseList.vue     # Horse stable display
-│   ├── RaceTrack.vue     # Active race visualization
-│   └── Results.vue       # Race results and statistics
+│   ├── Controls.vue           # Game control buttons and status
+│   ├── HorseList.vue          # Horse stable display
+│   ├── RaceTrack.vue          # Active race visualization
+│   ├── Results.vue            # Race results and statistics
+│   ├── Dialog.vue             # Reusable modal dialog component
+│   ├── RaceResultsDialog.vue  # Complete race results table
+│   ├── HorseStableDialog.vue  # Detailed horse data table
+│   └── GameRulesDialog.vue    # Game rules and instructions
 ├── store/
-│   ├── index.js          # Main store configuration
+│   ├── index.js               # Main store configuration
 │   └── modules/
-│       ├── horses.js     # Horse data management
-│       ├── race.js       # Race logic and simulation
-│       └── game.js       # Game state and controls
-└── App.vue               # Main application component
+│       ├── horses.js          # Horse data management
+│       ├── race.js            # Race logic and simulation
+│       └── game.js            # Game state and controls
+├── utils/
+│   └── raceLogic.js           # Pure utility functions for race simulation
+└── App.vue                    # Main application component
 ```
 
 ### State Management
@@ -100,8 +113,11 @@ npm run preview
 2. **Generate Schedule**: Click "Generate Race Schedule" to create 6 rounds
 3. **Start Racing**: Click "Start Race" to begin the competition
 4. **Watch Races**: Observe horses racing across the track with real-time animations
-5. **View Results**: Check the results panel for race outcomes and statistics
-6. **Reset**: Use "Reset Game" to start over
+5. **Skip Options**: Use "Skip Round" to fast-forward current race or "Skip to End" to complete all remaining rounds
+6. **View Results**: Check the results panel for race outcomes and statistics
+7. **Access Details**: Click icon buttons to view complete results, horse data, or game rules
+8. **Game Complete**: After all 6 rounds, view complete results or start a new game
+9. **Reset**: Use "Reset Game" to start over
 
 ## 🧪 Testing
 
@@ -126,18 +142,26 @@ Adjust the distances array in `src/store/modules/race.js` to modify race lengths
 ### Animation Speed
 Update the `raceDuration` and `updateInterval` values in the race simulation for different animation speeds.
 
+### UI Styling
+- Modify CSS variables in `src/style.css` for consistent theming
+- Update gradient colors in component styles for different visual themes
+- Adjust animation durations in component transition properties
+
 ## 🔧 Technical Details
 
 ### Race Logic
 - Horses move based on their condition score (1-100)
 - Random factor adds unpredictability to races
-- Position updates every 100ms during 5-second races
-- Final positions determine race rankings
+- Position updates every 100ms during race simulation
+- Final positions and finish times determine race rankings
+- Skip functionality allows immediate completion of races
 
 ### Performance
-- Optimized animations using CSS transitions
-- Efficient state updates with Vuex
+- Optimized animations using CSS transitions and transforms
+- Efficient state updates with Vuex modular store
 - Responsive design for various screen sizes
+- Pure utility functions for race simulation logic
+- Teleport-based modal dialogs for better performance
 
 ### Browser Support
 - Modern browsers with ES6+ support
@@ -153,28 +177,6 @@ The application is fully responsive and works on:
 
 Layout automatically adjusts based on screen size with optimized mobile experience.
 
-## 🎉 Future Enhancements
 
-Potential features for future versions:
-- Sound effects and music
-- Betting system
-- Horse breeding mechanics
-- Tournament modes
-- Leaderboards
-- Multiplayer support
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📞 Support
-
-For questions or issues, please open an issue on the GitHub repository. 
+ 

@@ -67,9 +67,52 @@ describe('Horse Racing Game - Complete Flow', () => {
     // Wait for first result
     cy.get('.result-card', { timeout: 10000 }).should('be.visible')
     
-    // Check winner display
-    cy.get('.winner-badge').should('be.visible')
-    cy.get('.podium').should('be.visible')
-    cy.get('.podium-place').should('have.length', 3)
+    // Check winner display (updated for new simplified layout)
+    cy.get('.winner-only').should('be.visible')
+    cy.get('.winner-card').should('be.visible')
+  })
+
+  it('should show game rules dialog', () => {
+    cy.get('button').contains('📖 Game Rules').click()
+    cy.get('.dialog').should('be.visible')
+    cy.get('.dialog-title').should('contain', 'Game Rules')
+  })
+
+  it('should show complete results dialog', () => {
+    // Generate schedule and start race
+    cy.get('button').contains('Generate Race Schedule').click()
+    cy.get('button').contains('Start Race').click()
+    
+    // Wait for first result
+    cy.get('.result-card', { timeout: 10000 }).should('be.visible')
+    
+    // Click complete results button
+    cy.get('.icon-button').contains('📊').click()
+    cy.get('.dialog').should('be.visible')
+    cy.get('.dialog-title').should('contain', 'Complete Race Results')
+  })
+
+  it('should show horse stable dialog', () => {
+    cy.get('.icon-button').contains('📋').click()
+    cy.get('.dialog').should('be.visible')
+    cy.get('.dialog-title').should('contain', 'Horse Stable')
+  })
+
+  it('should skip rounds and complete game', () => {
+    // Generate schedule and start race
+    cy.get('button').contains('Generate Race Schedule').click()
+    cy.get('button').contains('Start Race').click()
+    
+    // Wait for race to start
+    cy.get('.active-race').should('be.visible')
+    
+    // Skip to end
+    cy.get('button').contains('Skip to End').click()
+    
+    // Wait for game complete
+    cy.get('.game-complete', { timeout: 10000 }).should('be.visible')
+    
+    // Check complete results button
+    cy.get('button').contains('📊 See Complete Results').should('be.visible')
   })
 }) 
