@@ -280,14 +280,71 @@ export default {
 @media (max-width: 768px) {
   .control-buttons {
     flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .left-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .right-buttons {
+    justify-content: center;
   }
   
   .btn {
     width: 100%;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+    min-width: auto;
   }
   
   .game-status {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .status-item {
+    padding: 0.625rem;
+  }
+  
+  .status-label {
+    font-size: 0.9rem;
+  }
+  
+  .status-value {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .control-buttons {
+    gap: 0.5rem;
+  }
+  
+  .left-buttons {
+    gap: 0.375rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .game-status {
+    gap: 0.5rem;
+  }
+  
+  .status-item {
+    padding: 0.5rem;
+  }
+  
+  .status-label {
+    font-size: 0.85rem;
+  }
+  
+  .status-value {
+    font-size: 0.85rem;
   }
 }
 </style>

@@ -105,6 +105,7 @@ export default {
   min-height: 600px;
 }
 
+/* Tablet and smaller desktop */
 @media (max-width: 1200px) {
   .game-content {
     grid-template-columns: 1fr;
@@ -114,6 +115,63 @@ export default {
   .left-panel,
   .right-panel {
     max-height: 300px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0.75rem;
+  }
+  
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .app-main {
+    padding: 1rem;
+  }
+  
+  .game-content {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  .left-panel,
+  .right-panel,
+  .center-panel {
+    padding: 1rem;
+    border-radius: 12px;
+    max-height: none;
+    min-height: auto;
+  }
+  
+  .left-panel,
+  .right-panel {
+    max-height: 250px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .app-main {
+    padding: 0.75rem;
+  }
+  
+  .game-content {
+    gap: 0.5rem;
+  }
+  
+  .left-panel,
+  .right-panel,
+  .center-panel {
+    padding: 0.75rem;
+    border-radius: 10px;
   }
 }
 </style> 

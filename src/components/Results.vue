@@ -301,4 +301,139 @@ export default {
 .results-list::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
+
+@media (max-width: 768px) {
+  .results-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  
+  .results h2 {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  
+  .icon-button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+  
+  .no-results-icon {
+    font-size: 2.5rem;
+  }
+  
+  .no-results h3 {
+    font-size: 1.1rem;
+  }
+  
+  .no-results p {
+    font-size: 0.8rem;
+  }
+  
+  .results-container {
+    gap: 1rem;
+  }
+  
+  .result-card {
+    padding: 1rem;
+  }
+  
+  .result-header {
+    margin-bottom: 0.75rem;
+  }
+  
+  .result-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .distance {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  
+  .winner-card {
+    padding: 0.625rem 1rem;
+    min-width: 180px;
+    gap: 0.5rem;
+  }
+  
+  .winner-name {
+    font-size: 0.9rem;
+  }
+  
+  .winner-time {
+    font-size: 0.75rem;
+  }
+  
+  .horse-color {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .results h2 {
+    font-size: 1.1rem;
+  }
+  
+  .icon-button {
+    width: 26px;
+    height: 26px;
+    font-size: 0.85rem;
+  }
+  
+  .no-results-icon {
+    font-size: 2rem;
+  }
+  
+  .no-results h3 {
+    font-size: 1rem;
+  }
+  
+  .no-results p {
+    font-size: 0.75rem;
+  }
+  
+  .results-container {
+    gap: 0.75rem;
+  }
+  
+  .result-card {
+    padding: 0.75rem;
+  }
+  
+  .result-header {
+    margin-bottom: 0.5rem;
+  }
+  
+  .result-header h3 {
+    font-size: 1rem;
+  }
+  
+  .distance {
+    padding: 0.15rem 0.5rem;
+    font-size: 0.7rem;
+  }
+  
+  .winner-card {
+    padding: 0.5rem 0.875rem;
+    min-width: 160px;
+    gap: 0.375rem;
+  }
+  
+  .winner-name {
+    font-size: 0.85rem;
+  }
+  
+  .winner-time {
+    font-size: 0.7rem;
+  }
+  
+  .horse-color {
+    width: 16px;
+    height: 16px;
+  }
+}
 </style> 

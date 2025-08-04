@@ -315,4 +315,139 @@ export default {
 .horses-grid::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
+
+@media (max-width: 768px) {
+  .horse-list-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  
+  .horse-list-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .horse-list-header .subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .icon-button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+  
+  .horses-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .horse-card {
+    padding: 0.875rem;
+  }
+  
+  .horse-header {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .horse-name {
+    font-size: 0.9rem;
+  }
+  
+  .horse-details {
+    gap: 0.375rem;
+  }
+  
+  .detail-item {
+    gap: 0.375rem;
+  }
+  
+  .label {
+    font-size: 0.75rem;
+    min-width: 50px;
+  }
+  
+  .value {
+    font-size: 0.85rem;
+  }
+  
+  .condition-bar {
+    height: 6px;
+    margin: 0 0.375rem;
+  }
+  
+  .condition-value {
+    font-size: 0.75rem;
+    min-width: 40px;
+  }
+  
+  .status {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .horse-list-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .horse-list-header .subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .icon-button {
+    width: 26px;
+    height: 26px;
+    font-size: 0.85rem;
+  }
+  
+  .horses-grid {
+    gap: 0.5rem;
+  }
+  
+  .horse-card {
+    padding: 0.75rem;
+  }
+  
+  .horse-header {
+    gap: 0.375rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .horse-name {
+    font-size: 0.85rem;
+  }
+  
+  .horse-details {
+    gap: 0.25rem;
+  }
+  
+  .detail-item {
+    gap: 0.25rem;
+  }
+  
+  .label {
+    font-size: 0.7rem;
+    min-width: 45px;
+  }
+  
+  .value {
+    font-size: 0.8rem;
+  }
+  
+  .condition-bar {
+    height: 5px;
+    margin: 0 0.25rem;
+  }
+  
+  .condition-value {
+    font-size: 0.7rem;
+    min-width: 35px;
+  }
+  
+  .status {
+    font-size: 0.7rem;
+  }
+}
 </style> 

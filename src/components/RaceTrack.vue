@@ -475,4 +475,225 @@ export default {
   background: white;
   color: #28a745;
 }
+
+@media (max-width: 768px) {
+  .race-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  
+  .race-info {
+    gap: 0.5rem;
+  }
+  
+  .round-info,
+  .distance-info {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .empty-icon,
+  .ready-icon,
+  .waiting-icon {
+    font-size: 3rem;
+  }
+  
+  .empty-state h3,
+  .ready-state h3,
+  .waiting-state h3 {
+    font-size: 1.3rem;
+  }
+  
+  .empty-state p,
+  .ready-state p,
+  .waiting-state p {
+    font-size: 0.9rem;
+  }
+  
+  .race-controls {
+    gap: 0.5rem;
+  }
+  
+  .action-btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .track-container {
+    padding: 0.75rem;
+  }
+  
+  .horse-lane {
+    margin-bottom: 0.75rem;
+    height: 35px;
+  }
+  
+  .lane-number {
+    width: 25px;
+    height: 25px;
+    font-size: 0.7rem;
+    margin-right: 0.75rem;
+  }
+  
+  .horse-sprite {
+    width: 35px;
+    height: 35px;
+    font-size: 1.3rem;
+  }
+  
+  .horse-info {
+    left: 40px;
+  }
+  
+  .horse-name {
+    font-size: 0.75rem;
+  }
+  
+  .horse-position {
+    font-size: 0.65rem;
+  }
+  
+  .race-progress {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+  
+  .progress-text {
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+  
+  .game-complete {
+    padding: 1.5rem;
+  }
+  
+  .complete-icon {
+    font-size: 3rem;
+  }
+  
+  .game-complete h3 {
+    font-size: 1.5rem;
+  }
+  
+  .game-complete p {
+    font-size: 1rem;
+  }
+  
+  .game-complete-buttons {
+    gap: 0.75rem;
+  }
+  
+  .results-btn,
+  .reset-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .race-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .round-info,
+  .distance-info {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .empty-icon,
+  .ready-icon,
+  .waiting-icon {
+    font-size: 2.5rem;
+  }
+  
+  .empty-state h3,
+  .ready-state h3,
+  .waiting-state h3 {
+    font-size: 1.1rem;
+  }
+  
+  .empty-state p,
+  .ready-state p,
+  .waiting-state p {
+    font-size: 0.8rem;
+  }
+  
+  .action-btn {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8rem;
+  }
+  
+  .track-container {
+    padding: 0.5rem;
+  }
+  
+  .horse-lane {
+    margin-bottom: 0.5rem;
+    height: 30px;
+  }
+  
+  .lane-number {
+    width: 22px;
+    height: 22px;
+    font-size: 0.65rem;
+    margin-right: 0.5rem;
+  }
+  
+  .horse-sprite {
+    width: 30px;
+    height: 30px;
+    font-size: 1.1rem;
+  }
+  
+  .horse-info {
+    left: 35px;
+  }
+  
+  .horse-name {
+    font-size: 0.7rem;
+  }
+  
+  .horse-position {
+    font-size: 0.6rem;
+  }
+  
+  .race-progress {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .progress-text {
+    font-size: 0.75rem;
+    min-width: 60px;
+  }
+  
+  .game-complete {
+    padding: 1rem;
+  }
+  
+  .complete-icon {
+    font-size: 2.5rem;
+  }
+  
+  .game-complete h3 {
+    font-size: 1.3rem;
+  }
+  
+  .game-complete p {
+    font-size: 0.9rem;
+  }
+  
+  .game-complete-buttons {
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+  
+  .results-btn,
+  .reset-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
 </style> 
