@@ -346,17 +346,20 @@ export default {
 
 @media (max-width: 768px) {
   .horse-list-header {
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: flex-start;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
   }
   
   .header-right {
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
   }
   
   .subtitle {
-    text-align: left;
+    text-align: center;
+    font-size: 0.8rem;
   }
   
   .horse-list-header h2 {
@@ -376,6 +379,9 @@ export default {
   .horses-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   
   .horse-card {
