@@ -145,21 +145,24 @@ export default {
 .icon-button::after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: -35px;
+  bottom: -40px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   color: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.8rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 1000;
-  min-width: max-content;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  width: max-content;
+  max-width: 300px;
+  overflow: visible;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .icon-button:hover::after {

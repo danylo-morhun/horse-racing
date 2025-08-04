@@ -209,6 +209,7 @@ export default {
 .race-controls {
   display: flex;
   justify-content: flex-end;
+  gap: 0.75rem;
   margin-bottom: 1rem;
 }
 
