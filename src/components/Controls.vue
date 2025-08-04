@@ -1,39 +1,41 @@
 <template>
   <div class="controls">
     <div class="control-buttons">
-      <button 
-        @click="generateSchedule" 
-        :disabled="!canGenerateSchedule"
-        class="btn btn-primary"
-        data-testid="generate-schedule-btn"
-      >
-        Generate Race Schedule
-      </button>
+      <div class="left-buttons">
+        <button 
+          @click="generateSchedule" 
+          :disabled="!canGenerateSchedule"
+          class="btn btn-primary"
+          data-testid="generate-schedule-btn"
+        >
+          Generate Race Schedule
+        </button>
+        
+        <button 
+          @click="startRace" 
+          :disabled="!canStartRace"
+          class="btn btn-success"
+          data-testid="start-race-btn"
+        >
+          Start Race
+        </button>
+        
+        <button 
+          @click="resetGame" 
+          class="btn btn-secondary"
+        >
+          Reset Game
+        </button>
+      </div>
       
-      <button 
-        @click="startRace" 
-        :disabled="!canStartRace"
-        class="btn btn-success"
-        data-testid="start-race-btn"
-      >
-        Start Race
-      </button>
-      
-
-      
-      <button 
-        @click="resetGame" 
-        class="btn btn-secondary"
-      >
-        Reset Game
-      </button>
-      
-      <button 
-        @click="showGameRules" 
-        class="btn btn-info"
-      >
-        📖 Game Rules
-      </button>
+      <div class="right-buttons">
+        <button 
+          @click="showGameRules" 
+          class="btn btn-info"
+        >
+          📖 Game Rules
+        </button>
+      </div>
     </div>
     
     <div class="game-status">
@@ -161,9 +163,21 @@ export default {
 
 .control-buttons {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+}
+
+.left-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.right-buttons {
+  display: flex;
+  gap: 1rem;
 }
 
 .btn {
@@ -276,4 +290,4 @@ export default {
     grid-template-columns: 1fr;
   }
 }
-</style> 
+</style>
