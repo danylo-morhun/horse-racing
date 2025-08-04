@@ -102,7 +102,6 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .results-header {
@@ -110,7 +109,6 @@ export default {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1rem;
-  overflow: hidden;
   flex-shrink: 0;
 }
 
@@ -123,7 +121,6 @@ export default {
   flex-direction: column;
   align-items: flex-end;
   gap: 0.5rem;
-  overflow: hidden;
 }
 
 .subtitle {
@@ -155,32 +152,50 @@ export default {
   box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
 }
 
-.icon-button::after {
+.icon-button::before {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: -50px;
+  top: -35px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.95);
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
   color: white;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
   font-weight: 500;
-  white-space: normal;
+  white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 9999;
-  width: max-content;
-  max-width: 400px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999999999;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.icon-button::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #2c3e50;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999999999;
+}
+
+.icon-button:hover::before,
 .icon-button:hover::after {
   opacity: 1;
+}
+
+.icon-button:hover::before {
+  transform: translateX(-50%) translateY(-2px);
 }
 
 .results h2 {

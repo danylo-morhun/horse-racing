@@ -5,9 +5,25 @@
         <h2>🐎 Horse Stable</h2>
       </div>
       <div class="header-right">
-        <div class="icon-button" @click="openStableDialog" data-tooltip="View Complete Horse Data">
+        <div 
+          class="icon-button" 
+          @click="openStableDialog" 
+          @mouseenter="showTooltip = true"
+          @mouseleave="showTooltip = false"
+          ref="tooltipButton"
+        >
           📋
         </div>
+        <Teleport to="body">
+          <div 
+            v-if="showTooltip" 
+            class="tooltip"
+            :style="tooltipStyle"
+          >
+            View Complete Horse Data
+            <div class="tooltip-arrow"></div>
+          </div>
+        </Teleport>
       </div>
     </div>
     
@@ -83,6 +99,21 @@ export default {
     const horses = computed(() => store.getters['horses/allHorses'] || [])
     const raceResults = computed(() => store.getters['race/raceResults'] || [])
     const showStableDialog = ref(false)
+    const showTooltip = ref(false)
+    const tooltipButton = ref(null)
+    
+    const tooltipStyle = computed(() => {
+      if (!tooltipButton.value) return {}
+      
+      const rect = tooltipButton.value.getBoundingClientRect()
+      return {
+        position: 'fixed',
+        top: `${rect.top - 40}px`,
+        left: `${rect.left + rect.width / 2}px`,
+        transform: 'translateX(-50%)',
+        zIndex: 999999999
+      }
+    })
     
     const getConditionClass = (condition) => {
       if (condition >= 80) return 'excellent'
@@ -103,6 +134,9 @@ export default {
       horses,
       raceResults,
       showStableDialog,
+      showTooltip,
+      tooltipButton,
+      tooltipStyle,
       getConditionClass,
       openStableDialog,
       closeStableDialog
@@ -114,7 +148,6 @@ export default {
 <style scoped>
 .horse-list {
   height: 100%;
-  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -125,7 +158,6 @@ export default {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1.5rem;
-  overflow: hidden;
   flex-shrink: 0;
 }
 
@@ -138,7 +170,7 @@ export default {
   flex-direction: column;
   align-items: flex-end;
   gap: 0.5rem;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .icon-button {
@@ -163,32 +195,30 @@ export default {
   box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
 }
 
-.icon-button::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.95);
+
+
+.tooltip {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
   color: white;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
   font-weight: 500;
-  white-space: normal;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 99999;
-  width: max-content;
-  max-width: 400px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
 }
 
-.icon-button:hover::after {
-  opacity: 1;
+.tooltip-arrow {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #2c3e50;
 }
 
 .horse-list h2 {
