@@ -5,7 +5,7 @@
         <h2>🐎 Horse Stable</h2>
         <p class="subtitle">All 20 horses with their conditions</p>
       </div>
-      <button @click="showStableDialog" class="btn btn-info">
+      <button @click="openStableDialog" class="btn btn-info">
         📋 Complete Data
       </button>
     </div>
@@ -88,7 +88,7 @@ export default {
       return 'poor'
     }
     
-    const showStableDialog = () => {
+    const openStableDialog = () => {
       showStableDialog.value = true
     }
     
@@ -101,7 +101,7 @@ export default {
       raceResults,
       showStableDialog,
       getConditionClass,
-      showStableDialog,
+      openStableDialog,
       closeStableDialog
     }
   }
