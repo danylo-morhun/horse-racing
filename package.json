@@ -1,0 +1,26 @@
+{
+  "name": "horse-racing-game",
+  "version": "1.0.0",
+  "description": "Interactive Horse Racing Game with Vue.js 3 and Vuex",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:e2e": "cypress run"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.5",
+    "vitest": "^0.34.1",
+    "cypress": "^12.17.1"
+  },
+  "keywords": ["vue", "vuex", "game", "racing"],
+  "author": "Horse Racing Game Developer",
+  "license": "MIT"
+} 
