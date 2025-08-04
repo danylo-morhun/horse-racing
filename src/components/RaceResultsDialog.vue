@@ -8,7 +8,8 @@
       <div v-for="(result, index) in raceResults" :key="result.round" class="round-section">
         <h4>Round {{ result.round }} - {{ result.distance }}m</h4>
         
-        <table class="results-table">
+        <div class="table-container">
+          <table class="results-table">
           <thead>
             <tr>
               <th>Position</th>
@@ -48,6 +49,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
         
         <div class="round-summary">
           <div class="winner-highlight">
@@ -94,6 +96,12 @@ export default {
 .race-results-table {
   max-height: 60vh;
   overflow-y: auto;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin: 0 -1rem;
+  padding: 0 1rem;
 }
 
 .round-section {

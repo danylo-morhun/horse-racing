@@ -1,8 +1,12 @@
 <template>
   <div class="results">
     <div class="results-header">
-      <h2>🏆 Race Results</h2>
-              <div 
+      <div class="header-left">
+        <h2>🏆 Race Results</h2>
+      </div>
+      <div class="header-right">
+        <p class="subtitle">Complete race results and statistics</p>
+        <div 
           v-if="raceResults.length > 0"
           @click="openRaceResultsDialog" 
           class="icon-button"
@@ -10,6 +14,7 @@
         >
           📊
         </div>
+      </div>
     </div>
     
     <div v-if="!raceResults || raceResults.length === 0" class="no-results">
@@ -103,8 +108,26 @@ export default {
 .results-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 1rem;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+  text-align: right;
 }
 
 .icon-button {
@@ -157,7 +180,7 @@ export default {
 }
 
 .results h2 {
-  margin: 0 0 1rem 0;
+  margin: 0;
   color: #333;
   font-size: 1.5rem;
 }
@@ -307,6 +330,14 @@ export default {
     flex-direction: column;
     gap: 0.75rem;
     align-items: flex-start;
+  }
+  
+  .header-right {
+    align-items: flex-start;
+  }
+  
+  .subtitle {
+    text-align: left;
   }
   
   .results h2 {

@@ -1,12 +1,14 @@
 <template>
   <div class="horse-list">
     <div class="horse-list-header">
-      <div>
+      <div class="header-left">
         <h2>🐎 Horse Stable</h2>
-        <p class="subtitle">All 20 horses with their conditions</p>
       </div>
-      <div class="icon-button" @click="openStableDialog" data-tooltip="View Complete Horse Data">
-        📋
+      <div class="header-right">
+        <p class="subtitle">All 20 horses with their conditions</p>
+        <div class="icon-button" @click="openStableDialog" data-tooltip="View Complete Horse Data">
+          📋
+        </div>
       </div>
     </div>
     
@@ -120,6 +122,17 @@ export default {
   margin-bottom: 1.5rem;
 }
 
+.header-left {
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
 .icon-button {
   display: flex;
   align-items: center;
@@ -176,9 +189,10 @@ export default {
 }
 
 .subtitle {
-  margin: 0 0 1.5rem 0;
+  margin: 0;
   color: #666;
   font-size: 0.9rem;
+  text-align: right;
 }
 
 .horses-grid {
@@ -321,6 +335,14 @@ export default {
     flex-direction: column;
     gap: 0.75rem;
     align-items: flex-start;
+  }
+  
+  .header-right {
+    align-items: flex-start;
+  }
+  
+  .subtitle {
+    text-align: left;
   }
   
   .horse-list-header h2 {
