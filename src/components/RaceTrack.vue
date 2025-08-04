@@ -76,19 +76,33 @@
       <div class="complete-icon">🎉</div>
       <h3>Game Complete!</h3>
       <p>All 6 rounds have been completed</p>
-      <button @click="resetGame" class="reset-btn">Play Again</button>
+      <div class="game-complete-buttons">
+        <button @click="showCompleteResults" class="results-btn">📊 See Complete Results</button>
+        <button @click="resetGame" class="reset-btn">Play Again</button>
+      </div>
     </div>
+    
+    <!-- Race Results Dialog -->
+    <RaceResultsDialog 
+      :is-open="showResultsDialog"
+      :race-results="raceResults"
+      @close="closeResultsDialog"
+    />
     
 
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
+import RaceResultsDialog from './RaceResultsDialog.vue'
 
 export default {
   name: 'RaceTrack',
+  components: {
+    RaceResultsDialog
+  },
   setup() {
     const store = useStore()
     
@@ -97,6 +111,9 @@ export default {
     const currentRound = computed(() => store.getters['race/currentRound'])
     const currentRace = computed(() => store.getters['race/currentRace'])
     const isGameComplete = computed(() => store.getters['race/isGameComplete'])
+    const raceResults = computed(() => store.getters['race/raceResults'] || [])
+    
+    const showResultsDialog = ref(false)
     
     const skipCurrentRound = () => {
       store.dispatch('race/skipCurrentRound')
@@ -110,15 +127,27 @@ export default {
       store.dispatch('game/resetGame')
     }
     
+    const showCompleteResults = () => {
+      showResultsDialog.value = true
+    }
+    
+    const closeResultsDialog = () => {
+      showResultsDialog.value = false
+    }
+    
     return {
       scheduleGenerated,
       isRacing,
       currentRound,
       currentRace,
       isGameComplete,
+      raceResults,
+      showResultsDialog,
       skipCurrentRound,
       skipToEnd,
-      resetGame
+      resetGame,
+      showCompleteResults,
+      closeResultsDialog
     }
   }
 }
@@ -406,6 +435,29 @@ export default {
 .game-complete p {
   margin: 0 0 1.5rem 0;
   font-size: 1.1rem;
+}
+
+.game-complete-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.results-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.results-btn:hover {
+  background: white;
+  color: #667eea;
 }
 
 .reset-btn {
