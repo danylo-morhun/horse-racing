@@ -84,12 +84,7 @@
       </div>
     </div>
     
-    <div v-if="isGameComplete" class="game-complete" data-testid="race-complete">
-      <div class="complete-icon">🎉</div>
-      <h3>Game Complete!</h3>
-      <p>All 6 rounds have been completed</p>
-      <button @click="resetGame" class="reset-btn">Play Again</button>
-    </div>
+
     
     <!-- Race Results Dialog -->
     <RaceResultsDialog 
@@ -114,12 +109,7 @@ export default {
     const store = useStore()
     
     const raceResults = computed(() => store.getters['race/raceResults'] || [])
-    const isGameComplete = computed(() => store.getters['race/isGameComplete'])
     const showRaceResultsDialog = ref(false)
-    
-    const resetGame = () => {
-      store.dispatch('game/resetGame')
-    }
     
     const openRaceResultsDialog = () => {
       showRaceResultsDialog.value = true
@@ -131,9 +121,7 @@ export default {
     
     return {
       raceResults,
-      isGameComplete,
       showRaceResultsDialog,
-      resetGame,
       openRaceResultsDialog,
       closeRaceResultsDialog
     }
@@ -158,30 +146,30 @@ export default {
 .action-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
+  gap: 0.3rem;
+  padding: 0.4rem 0.8rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.2);
 }
 
 .action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
 .btn-icon {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 
 .btn-text {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .results h2 {
@@ -397,45 +385,7 @@ export default {
   font-size: 0.9rem;
 }
 
-.game-complete {
-  margin-top: 1rem;
-  text-align: center;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-  color: white;
-  border-radius: 12px;
-}
 
-.complete-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.game-complete h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
-}
-
-.game-complete p {
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
-}
-
-.reset-btn {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 2px solid white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.reset-btn:hover {
-  background: white;
-  color: #28a745;
-}
 
 /* Scrollbar styling */
 .results-container::-webkit-scrollbar,

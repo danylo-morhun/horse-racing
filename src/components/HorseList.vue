@@ -124,30 +124,30 @@ export default {
 .action-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
+  gap: 0.3rem;
+  padding: 0.4rem 0.8rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.2);
 }
 
 .action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
 .btn-icon {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 
 .btn-text {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .horse-list h2 {

@@ -68,6 +68,13 @@
       </div>
     </div>
     
+    <div v-else-if="isGameComplete" class="game-complete" data-testid="race-complete">
+      <div class="complete-icon">🎉</div>
+      <h3>Game Complete!</h3>
+      <p>All 6 rounds have been completed</p>
+      <button @click="resetGame" class="reset-btn">Play Again</button>
+    </div>
+    
     <div v-else class="waiting-state">
       <div class="waiting-icon">⏳</div>
       <h3>Preparing Next Race...</h3>
@@ -89,9 +96,14 @@ export default {
     const isRacing = computed(() => store.getters['race/isRacing'])
     const currentRound = computed(() => store.getters['race/currentRound'])
     const currentRace = computed(() => store.getters['race/currentRace'])
+    const isGameComplete = computed(() => store.getters['race/isGameComplete'])
     
     const skipCurrentRound = () => {
       store.dispatch('race/skipCurrentRound')
+    }
+    
+    const resetGame = () => {
+      store.dispatch('game/resetGame')
     }
     
     return {
@@ -99,7 +111,9 @@ export default {
       isRacing,
       currentRound,
       currentRace,
-      skipCurrentRound
+      isGameComplete,
+      skipCurrentRound,
+      resetGame
     }
   }
 }
@@ -352,5 +366,50 @@ export default {
   color: #333;
   font-size: 0.9rem;
   min-width: 80px;
+}
+
+.game-complete {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.complete-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.game-complete h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+}
+
+.game-complete p {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.1rem;
+}
+
+.reset-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+  background: white;
+  color: #28a745;
 }
 </style> 

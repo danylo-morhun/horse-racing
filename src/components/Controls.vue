@@ -34,9 +34,7 @@
       >
         Reset Game
       </button>
-    </div>
-    
-    <div class="dialog-buttons">
+      
       <button 
         @click="showGameRules" 
         class="btn btn-info"
@@ -243,11 +241,7 @@ export default {
   box-shadow: 0 4px 15px rgba(23, 162, 184, 0.4);
 }
 
-.dialog-buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1.5rem;
-}
+
 
 .game-status {
   display: grid;
