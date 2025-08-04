@@ -180,3 +180,4 @@ Layout automatically adjusts based on screen size with optimized mobile experien
 
 
  # Horse Racing Game - Live Demo
+# Trigger new deployment
