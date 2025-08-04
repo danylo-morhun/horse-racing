@@ -1,3 +1,5 @@
+import { selectRandomHorses } from '../../utils/raceLogic'
+
 const state = {
   raceSchedule: [],
   currentRound: 0,
@@ -27,12 +29,12 @@ const mutations = {
 }
 
 const actions = {
-  generateRaceSchedule({ commit, rootGetters }) {
+  generateRaceSchedule({ commit, rootGetters, state }) {
     const schedule = []
     const horses = rootGetters['horses/allHorses']
     
     for (let round = 1; round <= 6; round++) {
-      const selectedHorses = this.getRandomHorses(horses, 10)
+      const selectedHorses = selectRandomHorses(horses, 10)
       schedule.push({
         round,
         distance: state.distances[round - 1],
@@ -45,11 +47,6 @@ const actions = {
     }
     
     commit('SET_RACE_SCHEDULE', schedule)
-  },
-
-  getRandomHorses(horses, count) {
-    const shuffled = [...horses].sort(() => 0.5 - Math.random())
-    return shuffled.slice(0, count)
   },
 
   startRace({ commit, state, dispatch }) {
