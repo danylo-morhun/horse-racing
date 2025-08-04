@@ -102,7 +102,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .results-header {
@@ -110,7 +110,8 @@ export default {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1rem;
-  overflow: visible;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .header-left {
@@ -122,7 +123,7 @@ export default {
   flex-direction: column;
   align-items: flex-end;
   gap: 0.5rem;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .subtitle {
@@ -173,7 +174,7 @@ export default {
   z-index: 9999;
   width: max-content;
   max-width: 400px;
-  overflow: visible;
+  overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   text-align: center;
 }

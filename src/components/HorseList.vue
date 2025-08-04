@@ -114,8 +114,10 @@ export default {
 <style scoped>
 .horse-list {
   height: 100%;
-  overflow: visible;
+  overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .horse-list-header {
@@ -123,7 +125,8 @@ export default {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1.5rem;
-  overflow: visible;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .header-left {
@@ -135,7 +138,7 @@ export default {
   flex-direction: column;
   align-items: flex-end;
   gap: 0.5rem;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .icon-button {
@@ -179,7 +182,7 @@ export default {
   z-index: 99999;
   width: max-content;
   max-width: 400px;
-  overflow: visible;
+  overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   text-align: center;
 }
@@ -204,7 +207,7 @@ export default {
 .horses-grid {
   display: grid;
   gap: 1rem;
-  max-height: 500px;
+  flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 8px;
@@ -212,8 +215,11 @@ export default {
 }
 
 .horses-grid-container {
-  overflow: visible;
+  overflow: hidden;
   position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .horse-card {
@@ -379,7 +385,7 @@ export default {
   .horses-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
-    max-height: 400px;
+    flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
   }

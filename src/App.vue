@@ -151,6 +151,7 @@ export default {
   .left-panel,
   .right-panel {
     max-height: 250px;
+    overflow: hidden;
   }
 }
 
