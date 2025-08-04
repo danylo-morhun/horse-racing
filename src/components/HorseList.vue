@@ -160,7 +160,7 @@ export default {
 .icon-button::after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: -50px;
+  bottom: -60px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.95);
@@ -173,7 +173,7 @@ export default {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  z-index: 9999;
+  z-index: 99999;
   width: max-content;
   max-width: 400px;
   overflow: visible;

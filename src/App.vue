@@ -94,6 +94,8 @@ export default {
   backdrop-filter: blur(10px);
   max-height: 600px;
   overflow-y: auto;
+  overflow-x: visible;
+  position: relative;
 }
 
 .center-panel {
