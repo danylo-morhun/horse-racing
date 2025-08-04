@@ -180,6 +180,42 @@ const actions = {
         }
       }
     }
+  },
+
+  skipToEnd({ commit, state, dispatch }) {
+    // Complete all remaining rounds immediately
+    for (let round = state.currentRound; round <= 6; round++) {
+      const currentRace = state.raceSchedule[round - 1]
+      if (currentRace) {
+        // Create a quick result without waiting for simulation
+        const horses = [...currentRace.horses]
+        
+        // Simulate final positions quickly
+        horses.forEach(horse => {
+          const speed = (horse.condition / 100) * (0.5 + Math.random() * 0.5)
+          horse.position = currentRace.distance * speed
+          horse.finished = true
+          horse.finishTime = Math.random() * 10000 + 5000 // Random finish time
+        })
+        
+        // Sort by position (highest first)
+        const sortedHorses = horses.sort((a, b) => b.position - a.position)
+        
+        const result = {
+          round: currentRace.round,
+          distance: currentRace.distance,
+          horses: sortedHorses,
+          winner: sortedHorses[0],
+          raceTime: 5000
+        }
+        
+        commit('ADD_RACE_RESULT', result)
+      }
+    }
+    
+    // Set to final state
+    commit('SET_CURRENT_ROUND', 6)
+    commit('SET_RACING_STATE', false)
   }
 }
 

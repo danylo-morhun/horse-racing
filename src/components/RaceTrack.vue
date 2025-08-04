@@ -26,6 +26,10 @@
           <span class="btn-icon">⏭️</span>
           <span class="btn-text">Skip Round</span>
         </button>
+        <button @click="skipToEnd" class="action-btn skip-end-btn">
+          <span class="btn-icon">🏁</span>
+          <span class="btn-text">Skip to End</span>
+        </button>
       </div>
       
       <div class="track-container">
@@ -102,6 +106,10 @@ export default {
       store.dispatch('race/skipCurrentRound')
     }
     
+    const skipToEnd = () => {
+      store.dispatch('race/skipToEnd')
+    }
+    
     const resetGame = () => {
       store.dispatch('game/resetGame')
     }
@@ -113,6 +121,7 @@ export default {
       currentRace,
       isGameComplete,
       skipCurrentRound,
+      skipToEnd,
       resetGame
     }
   }
@@ -231,6 +240,15 @@ export default {
 
 .skip-btn:hover {
   box-shadow: 0 4px 16px rgba(255, 193, 7, 0.3);
+}
+
+.skip-end-btn {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
+}
+
+.skip-end-btn:hover {
+  box-shadow: 0 4px 16px rgba(220, 53, 69, 0.3);
 }
 
 .btn-icon {

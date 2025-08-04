@@ -6,7 +6,7 @@
           v-if="raceResults.length > 0"
           @click="openRaceResultsDialog" 
           class="icon-button"
-          title="View Complete Race Results"
+          data-tooltip="View Complete Race Results"
         >
           📊
         </div>
@@ -28,17 +28,6 @@
         <div class="result-header">
           <h3>Round {{ result.round }}</h3>
           <span class="distance">{{ result.distance }}m</span>
-        </div>
-        
-        <div class="winner-section">
-          <div class="winner-badge">
-            <div 
-              class="winner-color"
-              :style="{ backgroundColor: result.winner.color }"
-            ></div>
-            <span class="winner-name">{{ result.winner.name }}</span>
-            <span class="winner-medal">🥇</span>
-          </div>
         </div>
         
         <div class="winner-only">
@@ -141,20 +130,23 @@ export default {
 }
 
 .icon-button::after {
-  content: attr(title);
+  content: attr(data-tooltip);
   position: absolute;
-  bottom: -30px;
+  bottom: -35px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+  z-index: 1000;
+  min-width: max-content;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .icon-button:hover::after {
@@ -233,37 +225,7 @@ export default {
   font-weight: 600;
 }
 
-.winner-section {
-  margin-bottom: 1.5rem;
-}
 
-.winner-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
-}
-
-.winner-color {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 2px solid white;
-}
-
-.winner-name {
-  font-weight: 700;
-  color: #333;
-  font-size: 1.1rem;
-  flex: 1;
-}
-
-.winner-medal {
-  font-size: 1.5rem;
-}
 
 .winner-only {
   display: flex;

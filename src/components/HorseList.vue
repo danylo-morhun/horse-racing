@@ -5,7 +5,7 @@
         <h2>🐎 Horse Stable</h2>
         <p class="subtitle">All 20 horses with their conditions</p>
       </div>
-      <div class="icon-button" @click="openStableDialog" title="View Complete Horse Data">
+      <div class="icon-button" @click="openStableDialog" data-tooltip="View Complete Horse Data">
         📋
       </div>
     </div>
@@ -143,20 +143,23 @@ export default {
 }
 
 .icon-button::after {
-  content: attr(title);
+  content: attr(data-tooltip);
   position: absolute;
-  bottom: -30px;
+  bottom: -35px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+  z-index: 1000;
+  min-width: max-content;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .icon-button:hover::after {
