@@ -238,13 +238,14 @@ export default {
 }
 
 .horse-color {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
   min-width: 80px;
+  padding: 0.75rem;
 }
 
 .color-indicator {
+  display: inline-block;
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -252,7 +253,6 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: all 0.3s ease;
-  position: relative;
 }
 
 .color-indicator:hover {
