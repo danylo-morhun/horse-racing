@@ -28,8 +28,8 @@
               <div 
                 class="color-indicator"
                 :style="{ backgroundColor: horse.color }"
+                :title="horse.color"
               ></div>
-              <span class="color-code">{{ horse.color }}</span>
             </td>
             <td class="condition">
               <div class="condition-bar">
@@ -240,21 +240,24 @@ export default {
 .horse-color {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  min-width: 100px;
+  justify-content: center;
+  min-width: 80px;
 }
 
 .color-indicator {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid #ddd;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.color-code {
-  font-size: 0.8rem;
-  color: #666;
-  font-family: monospace;
+.color-indicator:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .condition {
