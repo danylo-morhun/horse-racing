@@ -102,6 +102,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: visible;
 }
 
 .results-header {
@@ -109,6 +110,7 @@ export default {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1rem;
+  overflow: visible;
 }
 
 .header-left {
@@ -120,6 +122,7 @@ export default {
   flex-direction: column;
   align-items: flex-end;
   gap: 0.5rem;
+  overflow: visible;
 }
 
 .subtitle {
@@ -154,7 +157,7 @@ export default {
 .icon-button::after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: -40px;
+  bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.95);
@@ -167,7 +170,7 @@ export default {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  z-index: 1000;
+  z-index: 9999;
   width: max-content;
   max-width: 400px;
   overflow: visible;
