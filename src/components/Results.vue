@@ -5,7 +5,6 @@
         <h2>🏆 Race Results</h2>
       </div>
       <div class="header-right">
-        <p class="subtitle">Complete race results and statistics</p>
         <div 
           v-if="raceResults.length > 0"
           @click="openRaceResultsDialog" 
@@ -164,15 +163,16 @@ export default {
   border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 500;
-  white-space: nowrap;
+  white-space: normal;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 1000;
   width: max-content;
-  max-width: 300px;
+  max-width: 400px;
   overflow: visible;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 .icon-button:hover::after {
