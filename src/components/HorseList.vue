@@ -202,7 +202,7 @@ export default {
   display: grid;
   gap: 1rem;
   max-height: 500px;
-  overflow-y: auto;
+  overflow: visible;
 }
 
 .horse-card {
