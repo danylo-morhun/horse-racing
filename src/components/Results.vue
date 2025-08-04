@@ -2,13 +2,14 @@
   <div class="results">
     <div class="results-header">
       <h2>🏆 Race Results</h2>
-      <button 
-        v-if="raceResults.length > 0"
-        @click="openRaceResultsDialog" 
-        class="btn btn-info"
-      >
-        📊 Complete Results
-      </button>
+              <button 
+          v-if="raceResults.length > 0"
+          @click="openRaceResultsDialog" 
+          class="action-btn"
+        >
+          <span class="btn-icon">📊</span>
+          <span class="btn-text">Complete Results</span>
+        </button>
     </div>
     
     <div v-if="!raceResults || raceResults.length === 0" class="no-results">
@@ -154,10 +155,33 @@ export default {
   margin-bottom: 1rem;
 }
 
-.results-header .btn {
-  padding: 0.5rem 1rem;
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
   font-size: 0.9rem;
-  min-width: auto;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+.btn-text {
+  font-weight: 600;
 }
 
 .results h2 {

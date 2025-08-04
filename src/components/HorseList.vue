@@ -5,8 +5,9 @@
         <h2>🐎 Horse Stable</h2>
         <p class="subtitle">All 20 horses with their conditions</p>
       </div>
-      <button @click="openStableDialog" class="btn btn-info">
-        📋 Complete Data
+      <button @click="openStableDialog" class="action-btn">
+        <span class="btn-icon">📋</span>
+        <span class="btn-text">Complete Data</span>
       </button>
     </div>
     
@@ -120,10 +121,33 @@ export default {
   margin-bottom: 1.5rem;
 }
 
-.horse-list-header .btn {
-  padding: 0.5rem 1rem;
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
   font-size: 0.9rem;
-  min-width: auto;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+.btn-text {
+  font-weight: 600;
 }
 
 .horse-list h2 {

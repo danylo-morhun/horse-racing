@@ -170,9 +170,11 @@ const actions = {
         
         commit('ADD_RACE_RESULT', result)
         
-        // Move to next round immediately
+        // Move to next round immediately and start it
         if (state.currentRound < 6) {
           commit('SET_CURRENT_ROUND', state.currentRound + 1)
+          // Start the next round immediately
+          dispatch('runCurrentRound')
         } else {
           commit('SET_RACING_STATE', false)
         }

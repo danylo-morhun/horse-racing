@@ -22,8 +22,9 @@
     
     <div v-else-if="isRacing && currentRace" class="active-race" data-testid="race-in-progress">
       <div class="race-controls">
-        <button @click="skipCurrentRound" class="btn btn-warning">
-          ⏭️ Skip Round
+        <button @click="skipCurrentRound" class="action-btn skip-btn">
+          <span class="btn-icon">⏭️</span>
+          <span class="btn-text">Skip Round</span>
         </button>
       </div>
       
@@ -188,10 +189,42 @@ export default {
   margin-bottom: 1rem;
 }
 
-.race-controls .btn {
-  padding: 0.5rem 1rem;
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
   font-size: 0.9rem;
-  min-width: auto;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.skip-btn {
+  background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.2);
+}
+
+.skip-btn:hover {
+  box-shadow: 0 4px 16px rgba(255, 193, 7, 0.3);
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+.btn-text {
+  font-weight: 600;
 }
 
 .track-container {

@@ -37,31 +37,12 @@
     </div>
     
     <div class="dialog-buttons">
-      <div class="left-buttons">
-        <button 
-          @click="showRaceResults" 
-          :disabled="!raceResults || raceResults.length === 0"
-          class="btn btn-info"
-        >
-          📊 Race Results
-        </button>
-        
-        <button 
-          @click="showHorseStable" 
-          class="btn btn-info"
-        >
-          🐎 Horse Stable
-        </button>
-      </div>
-      
-      <div class="right-buttons">
-        <button 
-          @click="showGameRules" 
-          class="btn btn-info"
-        >
-          📖 Game Rules
-        </button>
-      </div>
+      <button 
+        @click="showGameRules" 
+        class="btn btn-info"
+      >
+        📖 Game Rules
+      </button>
     </div>
     
     <div class="game-status">
@@ -148,13 +129,7 @@ export default {
     // Dialog states
     const showGameRulesDialog = ref(false)
     
-    const showRaceResults = () => {
-      // This will be handled by the Results component
-    }
-    
-    const showHorseStable = () => {
-      // This will be handled by the HorseList component
-    }
+
     
     const showGameRules = () => {
       showGameRulesDialog.value = true
@@ -178,8 +153,6 @@ export default {
       startRace,
       resetGame,
       skipCurrentRound,
-      showRaceResults,
-      showHorseStable,
       showGameRules,
       showGameRulesDialog,
       closeGameRules
@@ -272,20 +245,8 @@ export default {
 
 .dialog-buttons {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
   margin-bottom: 1.5rem;
-}
-
-.left-buttons {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.right-buttons {
-  display: flex;
-  gap: 0.5rem;
 }
 
 .game-status {
