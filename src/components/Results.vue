@@ -1,6 +1,15 @@
 <template>
   <div class="results">
-    <h2>🏆 Race Results</h2>
+    <div class="results-header">
+      <h2>🏆 Race Results</h2>
+      <button 
+        v-if="raceResults.length > 0"
+        @click="openRaceResultsDialog" 
+        class="btn btn-info"
+      >
+        📊 Complete Results
+      </button>
+    </div>
     
     <div v-if="!raceResults || raceResults.length === 0" class="no-results">
       <div class="no-results-icon">📊</div>
@@ -80,29 +89,52 @@
       <p>All 6 rounds have been completed</p>
       <button @click="resetGame" class="reset-btn">Play Again</button>
     </div>
+    
+    <!-- Race Results Dialog -->
+    <RaceResultsDialog 
+      :is-open="showRaceResultsDialog"
+      :race-results="raceResults"
+      @close="closeRaceResultsDialog"
+    />
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
+import RaceResultsDialog from './RaceResultsDialog.vue'
 
 export default {
   name: 'Results',
+  components: {
+    RaceResultsDialog
+  },
   setup() {
     const store = useStore()
     
-    const raceResults = computed(() => store.getters['race/raceResults'])
+    const raceResults = computed(() => store.getters['race/raceResults'] || [])
     const isGameComplete = computed(() => store.getters['race/isGameComplete'])
+    const showRaceResultsDialog = ref(false)
     
     const resetGame = () => {
       store.dispatch('game/resetGame')
     }
     
+    const openRaceResultsDialog = () => {
+      showRaceResultsDialog.value = true
+    }
+    
+    const closeRaceResultsDialog = () => {
+      showRaceResultsDialog.value = false
+    }
+    
     return {
       raceResults,
       isGameComplete,
-      resetGame
+      showRaceResultsDialog,
+      resetGame,
+      openRaceResultsDialog,
+      closeRaceResultsDialog
     }
   }
 }
@@ -113,6 +145,19 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.results-header .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  min-width: auto;
 }
 
 .results h2 {

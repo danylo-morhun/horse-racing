@@ -37,27 +37,31 @@
     </div>
     
     <div class="dialog-buttons">
-      <button 
-        @click="showRaceResults" 
-        :disabled="!raceResults || raceResults.length === 0"
-        class="btn btn-info"
-      >
-        📊 Race Results
-      </button>
+      <div class="left-buttons">
+        <button 
+          @click="showRaceResults" 
+          :disabled="!raceResults || raceResults.length === 0"
+          class="btn btn-info"
+        >
+          📊 Race Results
+        </button>
+        
+        <button 
+          @click="showHorseStable" 
+          class="btn btn-info"
+        >
+          🐎 Horse Stable
+        </button>
+      </div>
       
-      <button 
-        @click="showHorseStable" 
-        class="btn btn-info"
-      >
-        🐎 Horse Stable
-      </button>
-      
-      <button 
-        @click="showGameRules" 
-        class="btn btn-info"
-      >
-        📖 Game Rules
-      </button>
+      <div class="right-buttons">
+        <button 
+          @click="showGameRules" 
+          class="btn btn-info"
+        >
+          📖 Game Rules
+        </button>
+      </div>
     </div>
     
     <div class="game-status">
@@ -88,20 +92,7 @@
       </div>
     </div>
     
-    <!-- Dialogs -->
-    <RaceResultsDialog 
-      :is-open="showRaceResultsDialog"
-      :race-results="raceResults"
-      @close="closeRaceResults"
-    />
-    
-    <HorseStableDialog 
-      :is-open="showHorseStableDialog"
-      :horses="horses"
-      :race-results="raceResults"
-      @close="closeHorseStable"
-    />
-    
+    <!-- Game Rules Dialog -->
     <GameRulesDialog 
       :is-open="showGameRulesDialog"
       @close="closeGameRules"
@@ -112,15 +103,11 @@
 <script>
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-import RaceResultsDialog from './RaceResultsDialog.vue'
-import HorseStableDialog from './HorseStableDialog.vue'
 import GameRulesDialog from './GameRulesDialog.vue'
 
 export default {
   name: 'Controls',
   components: {
-    RaceResultsDialog,
-    HorseStableDialog,
     GameRulesDialog
   },
   setup() {
@@ -159,28 +146,18 @@ export default {
     }
     
     // Dialog states
-    const showRaceResultsDialog = ref(false)
-    const showHorseStableDialog = ref(false)
     const showGameRulesDialog = ref(false)
     
     const showRaceResults = () => {
-      showRaceResultsDialog.value = true
+      // This will be handled by the Results component
     }
     
     const showHorseStable = () => {
-      showHorseStableDialog.value = true
+      // This will be handled by the HorseList component
     }
     
     const showGameRules = () => {
       showGameRulesDialog.value = true
-    }
-    
-    const closeRaceResults = () => {
-      showRaceResultsDialog.value = false
-    }
-    
-    const closeHorseStable = () => {
-      showHorseStableDialog.value = false
     }
     
     const closeGameRules = () => {
@@ -204,11 +181,7 @@ export default {
       showRaceResults,
       showHorseStable,
       showGameRules,
-      showRaceResultsDialog,
-      showHorseStableDialog,
       showGameRulesDialog,
-      closeRaceResults,
-      closeHorseStable,
       closeGameRules
     }
   }
@@ -299,9 +272,20 @@ export default {
 
 .dialog-buttons {
   display: flex;
-  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.5rem;
+}
+
+.left-buttons {
+  display: flex;
+  gap: 0.5rem;
   flex-wrap: wrap;
+}
+
+.right-buttons {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .game-status {

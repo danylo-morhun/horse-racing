@@ -21,6 +21,12 @@
     </div>
     
     <div v-else-if="isRacing && currentRace" class="active-race" data-testid="race-in-progress">
+      <div class="race-controls">
+        <button @click="skipCurrentRound" class="btn btn-warning">
+          ⏭️ Skip Round
+        </button>
+      </div>
+      
       <div class="track-container">
         <div class="finish-line"></div>
         
@@ -83,11 +89,16 @@ export default {
     const currentRound = computed(() => store.getters['race/currentRound'])
     const currentRace = computed(() => store.getters['race/currentRace'])
     
+    const skipCurrentRound = () => {
+      store.dispatch('race/skipCurrentRound')
+    }
+    
     return {
       scheduleGenerated,
       isRacing,
       currentRound,
-      currentRace
+      currentRace,
+      skipCurrentRound
     }
   }
 }
@@ -169,6 +180,18 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+.race-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.race-controls .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  min-width: auto;
 }
 
 .track-container {

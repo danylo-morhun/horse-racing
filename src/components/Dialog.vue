@@ -63,9 +63,9 @@ export default {
 .dialog-content {
   background: white;
   border-radius: 15px;
-  max-width: 90vw;
+  max-width: 95vw;
   max-height: 90vh;
-  width: 600px;
+  width: 1200px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;

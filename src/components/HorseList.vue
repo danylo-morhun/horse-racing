@@ -1,7 +1,14 @@
 <template>
   <div class="horse-list">
-    <h2>🐎 Horse Stable</h2>
-    <p class="subtitle">All 20 horses with their conditions</p>
+    <div class="horse-list-header">
+      <div>
+        <h2>🐎 Horse Stable</h2>
+        <p class="subtitle">All 20 horses with their conditions</p>
+      </div>
+      <button @click="showStableDialog" class="btn btn-info">
+        📋 Complete Data
+      </button>
+    </div>
     
     <div class="horses-grid">
       <div 
@@ -46,19 +53,33 @@
         </div>
       </div>
     </div>
+    
+    <!-- Horse Stable Dialog -->
+    <HorseStableDialog 
+      :is-open="showStableDialog"
+      :horses="horses"
+      :race-results="raceResults"
+      @close="closeStableDialog"
+    />
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
+import HorseStableDialog from './HorseStableDialog.vue'
 
 export default {
   name: 'HorseList',
+  components: {
+    HorseStableDialog
+  },
   setup() {
     const store = useStore()
     
-    const horses = computed(() => store.getters['horses/allHorses'])
+    const horses = computed(() => store.getters['horses/allHorses'] || [])
+    const raceResults = computed(() => store.getters['race/raceResults'] || [])
+    const showStableDialog = ref(false)
     
     const getConditionClass = (condition) => {
       if (condition >= 80) return 'excellent'
@@ -67,9 +88,21 @@ export default {
       return 'poor'
     }
     
+    const showStableDialog = () => {
+      showStableDialog.value = true
+    }
+    
+    const closeStableDialog = () => {
+      showStableDialog.value = false
+    }
+    
     return {
       horses,
-      getConditionClass
+      raceResults,
+      showStableDialog,
+      getConditionClass,
+      showStableDialog,
+      closeStableDialog
     }
   }
 }
@@ -78,6 +111,19 @@ export default {
 <style scoped>
 .horse-list {
   height: 100%;
+}
+
+.horse-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.horse-list-header .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  min-width: auto;
 }
 
 .horse-list h2 {
