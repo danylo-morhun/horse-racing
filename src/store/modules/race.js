@@ -66,6 +66,12 @@ const actions = {
     
     commit('ADD_RACE_RESULT', result)
     
+    // Check if this was the final round
+    if (state.currentRound === 6) {
+      commit('SET_RACING_STATE', false)
+      return
+    }
+    
     // Wait 2 seconds before next round
     setTimeout(() => {
       commit('SET_CURRENT_ROUND', state.currentRound + 1)
