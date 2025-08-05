@@ -41,8 +41,9 @@ const actions = {
   resetGame({ commit, dispatch }) {
     commit('RESET_GAME_STATE')
     dispatch('race/resetRace', null, { root: true })
-    // Re-initialize the game to regenerate horses
-    dispatch('initializeGame')
+    // Regenerate horses but don't start anything
+    dispatch('horses/generateHorses', null, { root: true })
+    commit('SET_HORSES_GENERATED', true)
   }
 }
 
