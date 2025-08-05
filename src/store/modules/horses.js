@@ -17,6 +17,13 @@ const mutations = {
     if (horse) {
       horse.condition = condition
     }
+  },
+  UPDATE_HORSE_RACING_STATUS(state, { horseIds, isRacing }) {
+    state.horses.forEach(horse => {
+      if (horseIds.includes(horse.id)) {
+        horse.isRacing = isRacing
+      }
+    })
   }
 }
 
@@ -46,6 +53,10 @@ const actions = {
 
   updateHorseCondition({ commit }, { horseId, condition }) {
     commit('UPDATE_HORSE_CONDITION', { horseId, condition })
+  },
+  
+  updateHorseRacingStatus({ commit }, { horseIds, isRacing }) {
+    commit('UPDATE_HORSE_RACING_STATUS', { horseIds, isRacing })
   }
 }
 

@@ -49,9 +49,17 @@ const actions = {
     commit('SET_RACE_SCHEDULE', schedule)
   },
 
-  startRace({ commit, state, dispatch }) {
+  startRace({ commit, state, dispatch, rootGetters }) {
     commit('SET_RACING_STATE', true)
     commit('SET_CURRENT_ROUND', 1)
+    
+    // Update racing status for horses in the first race
+    const currentRace = state.raceSchedule[0]
+    if (currentRace) {
+      const horseIds = currentRace.horses.map(horse => horse.id)
+      dispatch('horses/updateHorseRacingStatus', { horseIds, isRacing: true }, { root: true })
+    }
+    
     dispatch('runCurrentRound')
   },
 
@@ -69,11 +77,20 @@ const actions = {
     // Check if this was the final round
     if (state.currentRound === 6) {
       commit('SET_RACING_STATE', false)
+      // Reset racing status for all horses when game is complete
+      dispatch('horses/updateHorseRacingStatus', { horseIds: [], isRacing: false }, { root: true })
       return
     }
     
     // Wait 2 seconds before next round
     setTimeout(() => {
+      // Update racing status for horses in the next race
+      const nextRace = state.raceSchedule[state.currentRound]
+      if (nextRace) {
+        const horseIds = nextRace.horses.map(horse => horse.id)
+        dispatch('horses/updateHorseRacingStatus', { horseIds, isRacing: true }, { root: true })
+      }
+      
       commit('SET_CURRENT_ROUND', state.currentRound + 1)
       dispatch('runCurrentRound')
     }, 2000)
@@ -144,8 +161,10 @@ const actions = {
     })
   },
 
-  resetRace({ commit }) {
+  resetRace({ commit, dispatch }) {
     commit('RESET_RACE_STATE')
+    // Reset racing status for all horses
+    dispatch('horses/updateHorseRacingStatus', { horseIds: [], isRacing: false }, { root: true })
   },
 
   skipCurrentRound({ commit, state, dispatch }) {
@@ -178,11 +197,20 @@ const actions = {
         
         // Move to next round immediately and start it
         if (state.currentRound < 6) {
+          // Update racing status for horses in the next race
+          const nextRace = state.raceSchedule[state.currentRound]
+          if (nextRace) {
+            const horseIds = nextRace.horses.map(horse => horse.id)
+            dispatch('horses/updateHorseRacingStatus', { horseIds, isRacing: true }, { root: true })
+          }
+          
           commit('SET_CURRENT_ROUND', state.currentRound + 1)
           // Start the next round immediately
           dispatch('runCurrentRound')
         } else {
           commit('SET_RACING_STATE', false)
+          // Reset racing status for all horses when game is complete
+          dispatch('horses/updateHorseRacingStatus', { horseIds: [], isRacing: false }, { root: true })
         }
       }
     }
@@ -222,6 +250,8 @@ const actions = {
     // Set to final state
     commit('SET_CURRENT_ROUND', 6)
     commit('SET_RACING_STATE', false)
+    // Reset racing status for all horses when game is complete
+    dispatch('horses/updateHorseRacingStatus', { horseIds: [], isRacing: false }, { root: true })
   }
 }
 
